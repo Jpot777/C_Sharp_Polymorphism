@@ -21,24 +21,30 @@ public class Unit : MonoBehaviour
         {
             if(m_tiktok == true)
             {
-                m_bodyColor = Color.Lerp(m_bodyColor, Color.white, 1.7f * Time.deltaTime);
-                if(.9f < m_bodyColor.r && .9f < m_bodyColor.g && .9f < m_bodyColor.b)
-                    m_tiktok = false;
+                m_bodyColor = Color.Lerp(m_bodyColor, Color.white, 1.7f * Time.deltaTime);      // => 몸체 색을 흰색으로
+
+                if(.9f < m_bodyColor.r && 
+                    .9f < m_bodyColor.g && 
+                    .9f < m_bodyColor.b)
+                        m_tiktok = false;
             }
             else
             {
-                m_bodyColor = Color.Lerp(m_bodyColor, m_targetColor, 1.7f * Time.deltaTime);
+                m_bodyColor = Color.Lerp(m_bodyColor, m_targetColor, 1.7f * Time.deltaTime);    // => 몸체 색을 target색으로
+
                 if(m_bodyColor.r < m_targetColor.r + .1f &&
                     m_bodyColor.g < m_targetColor.g + .1f &&
                     m_bodyColor.b < m_targetColor.b + .1f)
-                    m_tiktok = true;
+                        m_tiktok = true;
             }
 
             m_renderer.material.color = m_bodyColor;
         }
     }
 
-
+    /// <Summary>
+    /// A 키를 눌렀을 때 실행되는 함수 (Pc, Monster, Boss)
+    /// </Summary>
     public virtual void Attack()
     {
         this.transform.localScale = new Vector3(.1f, .1f, .1f);
